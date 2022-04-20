@@ -16,7 +16,7 @@ class _ModalBottomSheet<T> extends StatefulWidget {
     this.expanded = false,
     this.enableDrag = true,
     this.animationCurve,
-  })  : super(key: key);
+  }) : super(key: key);
 
   final double? closeProgressThreshold;
   final ModalBottomSheetRoute<T> route;
@@ -122,7 +122,7 @@ class _ModalBottomSheetState<T> extends State<_ModalBottomSheet<T>> {
   }
 }
 
-class ModalBottomSheetRoute<T> extends PopupRoute<T> {
+class ModalBottomSheetRoute<T> extends PageRoute<T> {
   ModalBottomSheetRoute({
     this.closeProgressThreshold,
     this.containerBuilder,
@@ -138,7 +138,7 @@ class ModalBottomSheetRoute<T> extends PopupRoute<T> {
     this.animationCurve,
     this.duration,
     RouteSettings? settings,
-  })  : super(settings: settings);
+  }) : super(settings: settings);
 
   final double? closeProgressThreshold;
   final WidgetWithChildBuilder? containerBuilder;
@@ -166,6 +166,12 @@ class ModalBottomSheetRoute<T> extends PopupRoute<T> {
 
   @override
   Color get barrierColor => modalBarrierColor ?? Colors.black.withOpacity(0.35);
+
+  @override
+  bool get maintainState => false;
+
+  @override
+  bool get opaque => false;
 
   AnimationController? _animationController;
 
